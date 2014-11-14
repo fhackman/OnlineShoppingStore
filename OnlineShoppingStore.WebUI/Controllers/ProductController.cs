@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShoppingStore.Domain.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,15 @@ namespace OnlineShoppingStore.WebUI.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
+         private readonly IProductRepository repository;
+        public ProductController(IProductRepository repo)
+         {
+              repository = repo;
+         }
+         // GET: Product
         public ViewResult List()
         {
-            return View();
+            return View(repository.Products);
         }
     }
 }
